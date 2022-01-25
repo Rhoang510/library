@@ -29,7 +29,7 @@ header {
 
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -37,7 +37,6 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 100px;
     border: 1px solid white;
     z-index: 1;
     width: 300px;
@@ -59,12 +58,38 @@ input {
     width: 250px;
 }
 
+.haveYouRead {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
 #read {
     height: 30px;
     width: 30px;
 }
 
 .addBookBtn {
+    font-size: 20px;
+    font-weight: 600;
+    height: 50px;
+    width: 120px;
+}
+
+.bookCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 30px;
+    height: 100%;
+    width: 300px;
+    border: 1px solid white;
+    border-radius: 10%;
+    padding: 10px;
+}
+
+.deleteBtn {
     font-size: 20px;
     font-weight: 600;
     height: 50px;

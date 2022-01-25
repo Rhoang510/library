@@ -14,14 +14,17 @@
             <button id="add">+</button>
         </div>
         <div class="container">
+            <div class="newBookContainer"></div>
             <div class="newBook">
                 <form class="inputNewBook">
                     <h2>Add New Book</h2>
-                    <input class="title" type="text" name="title" placeholder="Title">
-                    <input class="author" type="text" name="author" placeholder="Author">
-                    <input class="pages" type="number" name="pages" placeholder="Pages">
-                    <label for="read">Have you read?</label>
-                    <input id="read" type="checkbox" name="read">
+                    <input class="title" type="text" name="title" placeholder="Title" required>
+                    <input class="author" type="text" name="author" placeholder="Author" required>
+                    <input class="pages" type="number" name="pages" placeholder="Pages" required>
+                    <div class="haveYouRead">
+                        Have you read?
+                        <input class="haveRead" id="read" type="checkbox" name="read">
+                    </div>
                     <input class="addBookBtn" type="button" value="Add Book">
                 </form>
             </div>

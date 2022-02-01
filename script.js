@@ -13,10 +13,7 @@ function Book(title, author, pages, read) {
     this.title = title,
     this.author = author,
     this.pages = pages,
-    this.read = read,
-    this.info = function() {
-        return [title, author, pages, read]
-    }
+    this.read = read
 }
 
 function addBookToLibrary() {
@@ -24,43 +21,53 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
 }
 
+function displayBooks() {
+
+}
+
+// function findBook(title) {
+//     if(myLibrary.length === 0)
+// }
+
+function deleteBook(currentBook) {
+    myLibrary.splice(currentBook, 1);
+}
+
 function createBookCard() {
-    const div = document.createElement("div");
+    const bookCard = document.createElement("div");
     const newTitle = document.createElement("p");
     const newAuthor = document.createElement("p"); 
     const newPages = document.createElement("p"); 
-    const haveYouRead = document.createElement("button"); 
+    const readBtn = document.createElement("button"); 
     const deleteBtn = document.createElement("button");
     
-    div.classList.add("bookCard");
-    haveYouRead.classList.add("readBtn");
+    bookCard.classList.add("bookCard");
+    readBtn.classList.add("readBtn");
     deleteBtn.classList.add("deleteBtn");
     
     newTitle.textContent = title.value;
     newAuthor.textContent = "By " + author.value;
     newPages.textContent = pages.value + " pages";
-    deleteBtn.textContent = "Delete Book";
+    deleteBtn.textContent = "Remove";
 
     if(read.checked === false) {
-        haveYouRead.textContent = "Not Read";
-        haveYouRead.style.backgroundColor = "#e04f63"
+        readBtn.textContent = "Not Read";
+        readBtn.style.backgroundColor = "#e04f63"
     } else if (read.checked === true) {
         haveYouRead.textContent = "Read";
         haveYouRead.style.backgroundColor = "#63da63";
     }
 
-    div.appendChild(newTitle);
-    div.appendChild(newAuthor);
-    div.appendChild(newPages);
-    div.appendChild(haveYouRead);
-    div.appendChild(deleteBtn);
-    newBookContainer.appendChild(div);
+    bookCard.appendChild(newTitle);
+    bookCard.appendChild(newAuthor);
+    bookCard.appendChild(newPages);
+    bookCard.appendChild(readBtn);
+    bookCard.appendChild(deleteBtn);
+    container.appendChild(bookCard);
 
-    readBtn.addEventListener("click", () => {
-
-    })
     deleteBtn.addEventListener("click", () => {
-        myLibrary.splice(myLibrary.indexOf(item), 1);
+        bookCard.style.display = "none";
+        deleteBook();
     });
 }
 
@@ -71,31 +78,22 @@ function clearForm() {
     read.checked = false;
 }
 
-function openAddBookContainer() {
-    newBook.style.display = "flex";
-    // newBook.style.backdropFilter = "blur(5px)"
-}
 
-function removeAddBookContainer() {
-    newBook.style.display = "none";
-    // newBook.style.backdropFilter = "none"
-}
-
-addBtn.addEventListener("click", openAddBookContainer);
+addBtn.addEventListener("click", () => { newBook.style.display = "flex";});
 addBookBtn.addEventListener("click", () => {
     if (title.value === "" || author.value === "" || pages.value === "") {
         return; 
     } else {
+    newBook.style.display = "none";
     addBookToLibrary();
     createBookCard();
     clearForm();
-    removeAddBookContainer();
     }
 });
 
 window.addEventListener("onclick", (e) => {
     if(e.target == newBook) {
-        newBook.style.display = "none";
-    }
+        newBook.style.display = "none"
+    } 
 });
 

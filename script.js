@@ -16,22 +16,35 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
+Book.prototype.updateReadStatus = function(e) {
+    this.read = !this.read;
+    if (this.read == true) {
+        e.target.textContent = "Not Read";
+        e.target.style.backgroundColor = "#e04f63";
+    } else {
+        e.target.textContent = "Read";
+        e.target.style.backgroundColor = "#63da63";
+    }
+}
+
 function addBookToLibrary() {
     const newBook = new Book(title.value, author.value, pages.value, read.checked);
     myLibrary.push(newBook);
+    createBookCard();
+    // displayBooks();
 }
 
 function displayBooks() {
-
+    const books = document.querySelectorAll(".bookCard");
+        for (i = 0; i < myLibrary.length; i++) {
+            createBookCard(myLibrary[i]);
+    }
 }
+// displayBooks();
 
-// function findBook(title) {
-//     if(myLibrary.length === 0)
+// function deleteBook(currentBook) {
+//     myLibrary.splice(currentBook, 1);
 // }
-
-function deleteBook(currentBook) {
-    myLibrary.splice(currentBook, 1);
-}
 
 function createBookCard() {
     const bookCard = document.createElement("div");
@@ -54,20 +67,23 @@ function createBookCard() {
         readBtn.textContent = "Not Read";
         readBtn.style.backgroundColor = "#e04f63"
     } else if (read.checked === true) {
-        haveYouRead.textContent = "Read";
-        haveYouRead.style.backgroundColor = "#63da63";
+        readBtn.textContent = "Read";
+        readBtn.style.backgroundColor = "#63da63";
     }
 
+    // bookCard.setAttribute("data-number", )
     bookCard.appendChild(newTitle);
     bookCard.appendChild(newAuthor);
     bookCard.appendChild(newPages);
     bookCard.appendChild(readBtn);
     bookCard.appendChild(deleteBtn);
     container.appendChild(bookCard);
+    
+    readBtn.addEventListener("click", this.updateReadStatus)
 
     deleteBtn.addEventListener("click", () => {
         bookCard.style.display = "none";
-        deleteBook();
+        myLibrary.splice(myLibrary[i], 1)
     });
 }
 
@@ -80,20 +96,20 @@ function clearForm() {
 
 
 addBtn.addEventListener("click", () => { newBook.style.display = "flex";});
+
 addBookBtn.addEventListener("click", () => {
     if (title.value === "" || author.value === "" || pages.value === "") {
         return; 
     } else {
     newBook.style.display = "none";
     addBookToLibrary();
-    createBookCard();
     clearForm();
     }
 });
 
-window.addEventListener("onclick", (e) => {
-    if(e.target == newBook) {
-        newBook.style.display = "none"
+window.addEventListener("click", function(event) {
+    if(event.target == newBook) {
+        newBook.style.display = "none";
     } 
 });
 

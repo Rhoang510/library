@@ -16,11 +16,13 @@ function Book(title, author, pages, read) {
     this.read = read
 }
 
-Book.prototype.toggleReadStatus = function() {
-    if (myLibrary[i].read === true) {
-        myLibrary[i].read == false;
-    } else {
-        myLibrary[i].read == true;
+Book.prototype.toggleReadStatus = function(e) {
+    if (this.read === true) {
+        this.textContent = "Read";
+        this.read = false;
+    } else if(this.read === false) {
+        this.textContent = "Not Read";
+        this.read = true;
     }
 }
 
@@ -36,8 +38,9 @@ function displayBooks() {
     }
 }
 
-function createBookCard(book) {
+function createBookCard() {
     const bookCard = document.createElement("div");
+    const buttons = document.createElement("div");
     const newTitle = document.createElement("p");
     const newAuthor = document.createElement("p"); 
     const newPages = document.createElement("p"); 
@@ -45,27 +48,37 @@ function createBookCard(book) {
     const deleteBtn = document.createElement("button");
     
     bookCard.classList.add("bookCard");
+    buttons.classList.add("buttons");
     readBtn.classList.add("readBtn");
     deleteBtn.classList.add("deleteBtn");
     
     newTitle.textContent = myLibrary[i].title;
+    newTitle.style.fontSize = "30px";
     newAuthor.textContent = "By " + myLibrary[i].author;
     newPages.textContent = myLibrary[i].pages + " pages";
     deleteBtn.textContent = "Remove";
     
-    readBtn.textContent = myLibrary[i].read === true ? "Read" : "Not Read";
-    // readBtn.checked = myLibrary[i].read;
+    if(myLibrary[i].read === true) {
+        readBtn.textContent = "Read";
+        readBtn.classList.add("btnRead");
+    } else {
+        readBtn.textContent = "Not Read";
+        readBtn.classList.add("btnNotRead");
+    }
+
+    let readStatus = myLibrary[i].read;
     
     bookCard.setAttribute("id", i);
     readBtn.setAttribute("id", i);
     bookCard.appendChild(newTitle);
     bookCard.appendChild(newAuthor);
     bookCard.appendChild(newPages);
-    bookCard.appendChild(readBtn);
-    bookCard.appendChild(deleteBtn);
+    bookCard.appendChild(buttons);
+    buttons.appendChild(readBtn);
+    buttons.appendChild(deleteBtn);
     container.appendChild(bookCard);
     
-    readBtn.addEventListener("click", myLibrary[i].toggleReadStatus(i));
+    readBtn.addEventListener("click", readStatus.toggleReadStatus);
 
     deleteBtn.addEventListener("click", () => {
         bookCard.style.display = "none";

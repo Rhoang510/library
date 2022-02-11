@@ -17,12 +17,16 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.toggleReadStatus = function(e) {
-    if (this.read === true) {
-        this.textContent = "Read";
-        this.read = false;
-    } else if(this.read === false) {
-        this.textContent = "Not Read";
-        this.read = true;
+    if (myLibrary[i].read === true) {
+        myLibrary[i].read = false;
+        e.target.textContent = "Read";
+        e.target.classList.add("btnRead");
+        e.target.classList.remove("btnNotRead");
+    } else if(myLibrary[i].read === false) {
+        myLibrary[i].read = true;
+        e.target.textContent = "Not Read";
+        e.target.classList.add("btnNotRead");
+        e.target.classList.remove("btnRead");
     }
 }
 
@@ -41,19 +45,19 @@ function displayBooks() {
 function createBookCard() {
     const bookCard = document.createElement("div");
     const buttons = document.createElement("div");
-    const newTitle = document.createElement("p");
+    const newTitle = document.createElement("div");
     const newAuthor = document.createElement("p"); 
     const newPages = document.createElement("p"); 
     const readBtn = document.createElement("button"); 
     const deleteBtn = document.createElement("button");
     
     bookCard.classList.add("bookCard");
+    newTitle.classList.add("newTitle");
     buttons.classList.add("buttons");
     readBtn.classList.add("readBtn");
     deleteBtn.classList.add("deleteBtn");
     
     newTitle.textContent = myLibrary[i].title;
-    newTitle.style.fontSize = "30px";
     newAuthor.textContent = "By " + myLibrary[i].author;
     newPages.textContent = myLibrary[i].pages + " pages";
     deleteBtn.textContent = "Remove";

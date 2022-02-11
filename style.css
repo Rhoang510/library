@@ -9,14 +9,19 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(39, 38, 38);
     color: white;
-    word-wrap: break-word;
+    padding: 0;
+    margin: 0;
 }
 
 header {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100px;
     border-bottom: 1px solid white;
+    box-shadow: 0 0 5px 0 black;
+    background: linear-gradient(120deg, rgba(129, 9, 213, 1) 0%, rgba(0, 81, 255, 1) 50%, rgba(11, 189, 226, 1) 100%);
+  
 }
 
 #addBtn {
@@ -56,30 +61,35 @@ header {
 .newBook {
     position: fixed;
     display: none;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid white;
+    border: 1px solid rgba(11, 189, 226, 1);
     text-align: center;
     top: 50%;
     left: 50%;
     z-index: 1;
-    padding: 10px;
-    width: 300px;
+    padding: 15px;
+    height: 400px;
     transform: translate(-50%, -50%);
     transition: 0.2s ease-in-out;
     overflow: auto;
     border-radius: 5%;
-    background-color: rgb(0,0,0);
-    background-color: rgb(0, 0, 0.4);
+    background-color: rgb(37, 37, 37);
 }
 
 .newBook.active {
     transform: translate(-50%, -50%);
 }
 
+.newBookTitle {
+    color:rgba(11, 189, 226, 1);
+}
+
 .inputNewBook {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 20px;
 }
@@ -87,7 +97,8 @@ header {
 input {
     font-size: 20px;
     height: 40px;
-    width: 250px;
+    width: 300px;
+    border-radius: 5px;
 }
 
 
@@ -97,10 +108,12 @@ input {
 }
 
 .addBookBtn {
+    color: black;
     font-size: 20px;
     font-weight: 600;
     height: 50px;
-    width: 120px;
+    width: 140px;
+    border: none;
 }
 
 .bookCard {
@@ -108,12 +121,11 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(14, 37, 100);
     font-size: 20px;
-    width: 350px;
-    border: 1px solid white;
+    width: 400px;
+    border: 1px solid rgba(11, 189, 226, 1);
     border-radius: 10px;
-    padding: 10px;
+    padding-bottom: 10px;
 }
 
 .buttons {
@@ -122,6 +134,17 @@ input {
     justify-content: center;
     align-items: center;
     gap: 15px;
+}
+
+.newTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    background-color: rgb(0, 81, 255);
+    width: 100%;
+    height: 70px;
+    border-radius: 10px 10px 0 0;
 }
 
 .readBtn {
@@ -133,8 +156,16 @@ input {
     border: none;
 }
 
+.addBookBtn:hover {
+    filter: brightness(90%);
+}
+
 .readBtn:hover {
     filter: brightness(90%);
+}
+
+.readBtn:active {
+    transform: translate(1px, 1px);
 }
 
 .btnRead {
@@ -156,4 +187,8 @@ input {
 
 .deleteBtn:hover {
     filter: brightness(90%);
+}
+
+.deleteBtn:active {
+    transform: translate(1px, 1px);
 }

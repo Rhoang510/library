@@ -4,6 +4,7 @@ const pages = document.querySelector(".pages");
 const read = document.querySelector("#read");
 const addBtn = document.querySelector("#add");
 const container = document.querySelector(".container");
+const modal = document.querySelector(".modal");
 const newBook = document.querySelector(".newBook");
 const addBookBtn = document.querySelector(".addBookBtn");
 const newBookContainer = document.querySelector(".newBookContainer");
@@ -13,22 +14,35 @@ function Book(title, author, pages, read) {
     this.title = title,
     this.author = author,
     this.pages = pages,
-    this.read = read
-}
-
-Book.prototype.toggleReadStatus = function(e) {
-    if (myLibrary[i].read === true) {
-        myLibrary[i].read = false;
-        e.target.textContent = "Read";
-        e.target.classList.add("btnRead");
-        e.target.classList.remove("btnNotRead");
-    } else if(myLibrary[i].read === false) {
-        myLibrary[i].read = true;
-        e.target.textContent = "Not Read";
-        e.target.classList.add("btnNotRead");
-        e.target.classList.remove("btnRead");
+    this.read = read,
+    this.toggleReadStatus = function() {
+        if (this.read === true) {
+            this.read = false;
+            this.textContent = "Read";
+            this.classList.add("btnRead");
+            this.classList.remove("btnNotRead");
+        } else if(this.read === false) {
+            this.read = true;
+            this.textContent = "Not Read";
+            this.classList.add("btnNotRead");
+            this.classList.remove("btnRead");
+        }
     }
 }
+
+// Book.prototype.toggleReadStatus = function() {
+//     if (this.read === true) {
+//         this.read = false;
+//         this.textContent = "Read";
+//         this.classList.add("btnRead");
+//         this.classList.remove("btnNotRead");
+//     } else if(this.read === false) {
+//         this.read = true;
+//         this.textContent = "Not Read";
+//         this.classList.add("btnNotRead");
+//         this.classList.remove("btnRead");
+//     }
+// }
 
 function addBookToLibrary() {
     const newBook = new Book(title.value, author.value, pages.value, read.checked);
@@ -73,26 +87,24 @@ function createBookCard() {
     let readStatus = myLibrary[i].read;
     
     bookCard.setAttribute("id", i);
-    readBtn.setAttribute("id", i);
-    bookCard.appendChild(newTitle);
-    bookCard.appendChild(newAuthor);
-    bookCard.appendChild(newPages);
-    bookCard.appendChild(buttons);
-    buttons.appendChild(readBtn);
-    buttons.appendChild(deleteBtn);
+    bookCard.append(newTitle, newAuthor, newPages, buttons);
+    buttons.append(readBtn, deleteBtn);
     container.appendChild(bookCard);
     
-    readBtn.addEventListener("click", readStatus.toggleReadStatus);
+    // readBtn.addEventListener("click", readStatus.toggleReadStatus);
+    readBtn.addEventListener("click", () => {
+        readStatus.toggleReadStatus;
+        displayBooks();
+    })
 
     deleteBtn.addEventListener("click", () => {
-        bookCard.style.display = "none";
         myLibrary.splice(`${bookCard.id}`, 1);
         displayBooks();
     });
 }
 
 function clearForm() {
-    newBook.style.display = "none";
+    modal.style.display = "none";
     title.value = "";
     author.value = "";
     pages.value = "";
@@ -100,12 +112,13 @@ function clearForm() {
 }
 
 
-addBtn.addEventListener("click", () => { newBook.style.display = "flex";});
+addBtn.addEventListener("click", () => { modal.style.display = "flex";});
 
-addBookBtn.addEventListener("click", () => {
+addBookBtn.addEventListener("click", (e) => {
     if (title.value === "" || author.value === "" || pages.value === "") {
         return; 
     } else {
+        e.preventDefault();
         addBookToLibrary();
         displayBooks();
         clearForm();
@@ -113,8 +126,8 @@ addBookBtn.addEventListener("click", () => {
 });
 
 window.addEventListener("click", function(e) {
-    if(e.target == newBook) {
-        newBook.style.display = "none";
+    if(e.target == modal) {
+        modal.style.display = "none";
     } 
 });
 

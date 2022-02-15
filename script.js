@@ -11,38 +11,55 @@ const newBookContainer = document.querySelector(".newBookContainer");
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
-    this.title = title,
-    this.author = author,
-    this.pages = pages,
-    this.read = read,
-    this.toggleReadStatus = function() {
-        if (this.read === true) {
-            this.read = false;
-            this.textContent = "Read";
-            this.classList.add("btnRead");
-            this.classList.remove("btnNotRead");
-        } else if(this.read === false) {
-            this.read = true;
-            this.textContent = "Not Read";
-            this.classList.add("btnNotRead");
-            this.classList.remove("btnRead");
-        }
-    }
+    this.title = title
+    this.author = author
+    this.pages = pages
+    this.read = read
 }
 
-// Book.prototype.toggleReadStatus = function() {
-//     if (this.read === true) {
-//         this.read = false;
-//         this.textContent = "Read";
-//         this.classList.add("btnRead");
-//         this.classList.remove("btnNotRead");
-//     } else if(this.read === false) {
-//         this.read = true;
-//         this.textContent = "Not Read";
-//         this.classList.add("btnNotRead");
-//         this.classList.remove("btnRead");
-//     }
-// }
+Book.prototype.toggleReadStatus = function(e) {
+    this.read = !this.read;
+    // if(this.read === false) {
+    //     e.target.parentNode.textContent = "Not Read";
+    // } else {
+    //     e.target.parentNode.textContent = "Read";
+    // }
+}
+
+let samples = [
+    {
+        title: "Harry Potter and the Philosopher's Stone",
+        author: "J. K. Rowling",
+        pages: "520",
+        read: false 
+    },
+    {
+        title: "Game of Thrones",
+        author: "George R.R. Martin",
+        pages: "694",
+        read: true 
+    },
+    {
+        title: "Goosebumps",
+        author: "R.L. Stine",
+        pages: "256",
+        read: false 
+    }
+];
+
+function addSamples() {
+    samples.forEach((book) => {
+        const newBook = new Book(
+            book.title,
+            book.author,
+            book.pages,
+            book.read
+        );
+        myLibrary.push(newBook);
+    });
+    displayBooks();    
+}
+addSamples();
 
 function addBookToLibrary() {
     const newBook = new Book(title.value, author.value, pages.value, read.checked);
@@ -84,7 +101,7 @@ function createBookCard() {
         readBtn.classList.add("btnNotRead");
     }
 
-    let readStatus = myLibrary[i].read;
+    const readStatus = myLibrary[i];
     
     bookCard.setAttribute("id", i);
     bookCard.append(newTitle, newAuthor, newPages, buttons);
@@ -93,8 +110,7 @@ function createBookCard() {
     
     // readBtn.addEventListener("click", readStatus.toggleReadStatus);
     readBtn.addEventListener("click", () => {
-        readStatus.toggleReadStatus;
-        displayBooks();
+        readStatus.toggleReadStatus();
     })
 
     deleteBtn.addEventListener("click", () => {

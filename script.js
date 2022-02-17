@@ -19,11 +19,6 @@ function Book(title, author, pages, read) {
 
 Book.prototype.toggleReadStatus = function(e) {
     this.read = !this.read;
-    // if(this.read === false) {
-    //     e.target.parentNode.textContent = "Not Read";
-    // } else {
-    //     e.target.parentNode.textContent = "Read";
-    // }
 }
 
 let samples = [
@@ -59,6 +54,7 @@ function addSamples() {
     });
     displayBooks();    
 }
+
 addSamples();
 
 function addBookToLibrary() {
@@ -93,12 +89,18 @@ function createBookCard() {
     newPages.textContent = myLibrary[i].pages + " pages";
     deleteBtn.textContent = "Remove";
     
+    if(myLibrary[i].title.length >= 25) {
+        newTitle.style.fontSize = "20px";
+    } if(myLibrary[i].title.length >= 35) {
+        newTitle.style.fontSize = "18px";
+    }
+    
     if(myLibrary[i].read === true) {
         readBtn.textContent = "Read";
-        readBtn.classList.add("btnRead");
+        readBtn.style.backgroundColor = "rgb(29, 226, 29)";
     } else {
         readBtn.textContent = "Not Read";
-        readBtn.classList.add("btnNotRead");
+        readBtn.style.backgroundColor = "rgb(228, 30, 30)";
     }
 
     const readStatus = myLibrary[i];
@@ -108,10 +110,10 @@ function createBookCard() {
     buttons.append(readBtn, deleteBtn);
     container.appendChild(bookCard);
     
-    // readBtn.addEventListener("click", readStatus.toggleReadStatus);
     readBtn.addEventListener("click", () => {
         readStatus.toggleReadStatus();
-    })
+        displayBooks();
+    });
 
     deleteBtn.addEventListener("click", () => {
         myLibrary.splice(`${bookCard.id}`, 1);

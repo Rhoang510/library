@@ -23,7 +23,7 @@ Book.prototype.toggleReadStatus = function(e) {
 
 let samples = [
     {
-        title: "Harry Potter and the Philosopher's Stone",
+        title: "Harry Potter and the Sorceror's Stone",
         author: "J. K. Rowling",
         pages: "520",
         read: false 
@@ -128,7 +128,6 @@ function clearForm() {
     pages.value = "";
     read.checked = false;
 }
-
 
 addBtn.addEventListener("click", () => { modal.style.display = "flex";});
 

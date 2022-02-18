@@ -92,7 +92,7 @@ function createBookCard() {
     if(myLibrary[i].title.length >= 25) {
         newTitle.style.fontSize = "20px";
     } if(myLibrary[i].title.length >= 35) {
-        newTitle.style.fontSize = "18px";
+        newTitle.style.fontSize = "16px";
     }
     
     if(myLibrary[i].read === true) {

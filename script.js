@@ -10,16 +10,30 @@ const addBookBtn = document.querySelector(".addBookBtn");
 const newBookContainer = document.querySelector(".newBookContainer");
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
+// class Book {
+//     constructor(title, author, pages, read) {
+//         this.title = title;
+//         this.author = author;
+//         this.pages = pages;
+//         this.read = read;
+//     }
+//     toggleReadStatus(e) {
+//         this.read = !this.read;
+//     }
+// }
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title,
+        this.author = author,
+        this.pages = pages,
+        this.read = read
+    }
+    toggleReadStatus(e) {
+        this.read = !this.read;
+    }
 }
 
-Book.prototype.toggleReadStatus = function(e) {
-    this.read = !this.read;
-}
 
 let samples = [
     {

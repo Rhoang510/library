@@ -1,34 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <title>Library</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css">
-        <script type="text/javascript" src="script.js" defer></script>
-    </head>
-    <body>
-        <header>
-            <h1>My Library</h1>
-        </header>
-        <div id="addBtn">
-            <button id="add">+</button>
+  <head>
+    <title>Library</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>My Library</h1>
+    </header>
+    <div id="addBtn">
+      <button id="add">+</button>
+    </div>
+    <div class="container"></div>
+    <div class="modal">
+      <div class="newBook">
+        <div class="newBookTitle">
+          <h2>Add New Book</h2>
         </div>
-        <div class="container"></div>
-            <div class="modal">
-                <div class="newBook">
-                    <div class="newBookTitle">
-                    <h2>Add New Book</h2>
-                    </div>
-                    <form class="inputNewBook">
-                        <input class="title" type="text" name="title" placeholder="Title" maxlength="40" required>
-                        <input class="author" type="text" name="author" placeholder="Author" maxlength="25" required>
-                        <input class="pages" type="number" name="pages" pattern="/^-?\d+\.?\d*$/" placeholder="Pages" onKeyPress="if(this.value.length == 5) return false;" required>
-                        <div class="haveYouRead">
-                            Have you read?
-                            <input class="read" id="read" type="checkbox" name="read">
-                        </div>
-                        <input class="addBookBtn" type="submit" value="Add Book">
-                    </form>
-                </div>
-            </div>
-    </body>
+        <form class="inputNewBook">
+          <input
+            class="title"
+            type="text"
+            name="title"
+            placeholder="Title"
+            maxlength="40"
+            required
+          />
+          <input
+            class="author"
+            type="text"
+            name="author"
+            placeholder="Author"
+            maxlength="25"
+            required
+          />
+          <input
+            class="pages"
+            type="number"
+            name="pages"
+            pattern="/^-?\d+\.?\d*$/"
+            placeholder="Pages"
+            onKeyPress="if(this.value.length == 5) return false;"
+            required
+          />
+          <div class="haveYouRead">
+            Have you read?
+            <input class="read" id="read" type="checkbox" name="read" />
+          </div>
+          <input class="addBookBtn" type="submit" value="Add Book" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
